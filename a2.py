@@ -1,6 +1,6 @@
-# a3.py
+# a2.py
 
-# Starter code for assignment 3 in ICS 32 Programming with Software Libraries in Python
+# Starter code for assignment 2 in ICS 32 Programming with Software Libraries in Python
 
 # Replace the following placeholders with your information.
 
@@ -10,6 +10,10 @@
 
 from ui import *
 from admin import *
+
+
+start_options = ['q', 'c', 'o', 'admin']
+
 
 def main():
     while True:
@@ -27,5 +31,5 @@ def main():
         else:
             launch_ui(user_entry)
 
-if __name__ == "__main__":
+if __name__=="__main__": 
     main()
