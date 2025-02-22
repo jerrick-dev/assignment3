@@ -5,8 +5,8 @@
 
 
 from inputchecker import *
-from Profile import Post
-
+from Profile import *
+from ds_client import send
 
 def displayposts(journal):
     posts = journal.get_posts()
@@ -47,7 +47,44 @@ def journal_edit(entry,journal,directory):
             journal.save_profile(directory)
             print("BIO SET!")
             return
-
+    
+    elif entry == '-publish':
+        c = displayposts(journal)
+        if c == 1:
+            print("\nPost list is empty!")
+            return
+        while True:
+            id = input("Enter ID of post to publish:\n* ID: ")
+            if not id.isdigit():
+                print("ID must be an integer!")
+                continue 
+            if int(id) > c-1:
+                print("Not a valid ID!")
+                continue  
+            id = int(id)
+            break 
+        if journal.dsuserver is None:
+                IP = input("Enter the server ip: ")
+                journal.dsuserver = IP
+                journal.save_profile(directory)
+        post = journal.get_posts()[id-1]["entry"]
+        send(journal.dsuserver, 3001, journal.username,
+                 journal.password, post, journal.bio)
+        
+    elif entry == '-publishbio':
+        while True:
+            new_bio = input("Enter a new bio to publish: ")
+            if not new_bio or new_bio.isspace():
+                print("Cannot be empty!")
+                continue
+            break
+        if journal.dsuserver is None:
+            IP = input("Enter the server ip: ")
+            journal.dsuserver = IP
+            journal.save_profile(directory)
+        send(journal.dsuserver, 3001, journal.username,
+                 journal.password, None, new_bio)
+        
     elif entry == "-addpost":
         postcontent = input("Enter post content:\n* POSTCONTENT: ")
         post = Post(postcontent)

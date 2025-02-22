@@ -15,6 +15,8 @@ def edit_menu():
     print("-bio: Change bio")
     print("-addpost: Make a post")
     print("-delpost: Delete a post")
+    print("-publish: publish info to a server")
+    print("-publishbio: publish a new bio to server")
     print("-------------------------------------")
 
 def print_menu():
@@ -57,6 +59,6 @@ def journalui(entry,dsuPath,journal):
             user_option = input("Invalid entry, please select one of the choices above!\n* USER_ENTRY:  ")
         journal_print(user_option,journal,dsuPath)
 
-e_opt = ['-usr','-pwd','-bio','-addpost','-delpost'] 
+e_opt = ['-usr','-pwd','-bio','-addpost','-delpost','-publish','-publishbio'] 
 p_opt = ['-usr','-pwd','-bio','-posts','-post','-all']
 opt = ['e','p','q']

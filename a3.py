@@ -11,6 +11,8 @@
 from ui import *
 from admin import *
 
+start_options = ['c','o','q']
+
 def main():
     while True:
         user_entry = input("WELCOME TO PyJournal\nPlease enter one of the following:\n\nC - Create a file\nO - Open a file\nQ - Quit\n\n* USER_ENTRY: ")
